@@ -1,0 +1,30 @@
+{% extends "partials/base.html" %}
+{% load crispy_forms_tags %}
+
+
+{% block header %}
+ {% include "partials/header.html" %}
+ {% endblock header %}
+   
+
+   
+{% block content %}
+<br><br> <br> <br>
+
+<p> YOUR ACCOUNT HAS BEEN CREATED SUCCESSFULLY.</p>
+<p> <a href="{%url 'login' %}"><span>Login Now </span></a></p>
+  
+
+ {% endblock content %}
+   
+  {% block footerad %}
+  {% include "partials/footerad.html" %}
+ {% endblock footerad %}
+ 
+   {% block footer %}
+   {% include "partials/footer.html" %}
+ {% endblock footer %}
+   
+   {% block script %}
+   {% include "partials/script.html" %}
+ {% endblock script %}

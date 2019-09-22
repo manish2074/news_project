@@ -1,0 +1,47 @@
+{% extends "partials/base.html" %}
+{% load crispy_forms_tags %}
+
+
+{% block header %}
+ {% include "partials/header.html" %}
+ {% endblock header %}
+   
+
+   
+{% block content %}
+<br>
+
+<div class='col-lg-4col-md-4'>
+  </div>
+  <div class='col-lg-4 col-md-4'>
+      
+      
+        <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}">
+
+            {{ form|crispy }}
+
+            <button type="submit" class="btn btn-primary btn-block">Log in</button>
+        </form>
+      
+      </div>
+      <div  class='col-lg-4 col-md-4'>
+      </div>
+    
+  
+  
+  
+{% endblock content %}
+   
+  {% block footerad %}
+  {% include "partials/footerad.html" %}
+ {% endblock footerad %}
+ 
+   {% block footer %}
+   {% include "partials/footer.html" %}
+ {% endblock footer %}
+   
+   {% block script %}
+   {% include "partials/script.html" %}
+ {% endblock script %}

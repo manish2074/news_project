@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>The News Paper - News &amp; Lifestyle Magazine Template</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'img/core-img/favicon.ico' %}">
+
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+</head>
+
+<body>
+    <!-- ##### Header Area Start ##### -->
+ {% block header %}
+ 
+ {% endblock header %}
+    <!-- ##### Header Area End ##### -->
+  
+  {% block slider %}
+ 
+ {% endblock slider %}
+    <!-- ##### Featured Post Area Start ##### -->
+   
+{% block content %}
+ 
+ {% endblock content %}
+    <!-- ##### Footer Add Area Start ##### -->
+  {% block footerad %}
+ 
+ {% endblock footerad %}
+    <!-- ##### Footer Add Area End ##### -->
+
+    <!-- ##### Footer Area Start ##### -->
+   {% block footer %}
+ 
+ {% endblock footer %}
+    <!-- ##### Footer Area Start ##### -->
+
+    <!-- ##### All Javascript Files ##### -->
+    <!-- jQuery-2.2.4 js -->
+   {% block script %}
+ 
+ {% endblock script %}
+</body>
+
+</html>
