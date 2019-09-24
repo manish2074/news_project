@@ -1,5 +1,9 @@
+    
+
 {% extends "partials/base.html" %}
 {% load crispy_forms_tags %}
+{% load static %}
+
 
 
 {% block header %}
@@ -10,25 +14,28 @@
    
 {% block content %}
 <br>
+<link rel="stylesheet" href="{% static 'css/content.css' %}">
 
-<div class='col-lg-4col-md-4'>
-  </div>
-  <div class='col-lg-4 col-md-4'>
-      
-      
+<div class="col-sm-6 offset-sm-4 text-center">
+<div class="row">
+    <div class="col-md-6">
+
         <form method="post">
+
             {% csrf_token %}
             <input type="hidden" name="next" value="{{ next }}">
 
             {{ form|crispy }}
+            
 
-            <button type="submit" class="btn btn-primary btn-block">Log in</button>
+            <button type="submit" class="btn btn-primary">Sign Up</button>
         </form>
+        </div>
+        </div>
+</div>
+        
       
-      </div>
-      <div  class='col-lg-4 col-md-4'>
-      </div>
-    
+      
   
   
   
