@@ -20,10 +20,18 @@ class News(models.Model):
     
         return reverse("detail_news",kwargs={"category":self.get_category_display(), "pk":self.pk, "slug":self.slug})
     
+
     def __str__(self):
         return self.title
 
-    
+    def form_valid(self,form):
+        
+        news = form.save(commit=False)
+        title= form.cleaned_data['title']
+        news.slug = slugify(title)
+        news.save()
+        return super(News,self).form_valid(form)
+
 
     class Meta:
         

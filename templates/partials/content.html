@@ -27,7 +27,7 @@
                                                     <!-- Post Like & Post Comment -->
                                                     <div class="d-flex align-items-center">
                                                         <a href="#" class="post-like"><img src="{% static 'img/core-img/like.png' %}" alt=""> <span>392</span></a>
-                                                        <a href="#" class="post-comment"><img src="{% static 'img/core-img/chat.png' %}" alt=""> <span>10</span></a>
+                                                        <a href="# " class="post-comment"><img src="{% static 'img/core-img/chat.png' %}" alt=""> <span>{{news.news_comment.count}}</span></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -205,13 +205,13 @@
     </div>
     <!-- ##### Featured Post Area End ##### -->
 
-    <!-- ##### Popular News Area Start ##### -->
+    <!-- ##### Politics News Area Start ##### -->
     <div class="popular-news-area section-padding-80-50">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-lg-8">
                     <div class="section-heading">
-                        <h6>Popular News</h6>
+                        <h6>Politics</h6>
                     </div>
 
                     <div class="row">
@@ -219,137 +219,72 @@
                         <!-- Single Post -->
                         <div class="col-12 col-md-6">
                             <div class="single-blog-post style-3">
+                                {% for news in political_news %}
                                 <div class="post-thumb">
-                                    <a href="#"><img src="{% static 'img/bg-img/12.jpg' %}" alt=""></a>
-                                </div>
-                                <div class="post-data">
-                                    <a href="#" class="post-catagory">Finance</a>
-                                    <a href="#" class="post-title">
-                                        <h6>Dolor sit amet, consectetur adipiscing elit. Nam eu metus sit amet odio sodales placer. Sed varius leo ac...</h6>
-                                    </a>
-                                    <div class="post-meta d-flex align-items-center">
-                                        <a href="#" class="post-like"><img src="{% static 'img/core-img/like.png' %}" alt=""> <span>392</span></a>
-                                        <a href="#" class="post-comment"><img src="{% static 'img/core-img/chat.png' %}" alt=""> <span>10</span></a>
+                                        <a href="{{ news.get_absolute_url }}"><img src="{{ news.cover_image.url }}" alt=""></a>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Single Post -->
-                        <div class="col-12 col-md-6">
-                            <div class="single-blog-post style-3">
-                                <div class="post-thumb">
-                                    <a href="#"><img src="{% static 'img/bg-img/13.jpg' %}" alt=""></a>
-                                </div>
-                                <div class="post-data">
-                                    <a href="#" class="post-catagory">Finance</a>
-                                    <a href="#" class="post-title">
-                                        <h6>Dolor sit amet, consectetur adipiscing elit. Nam eu metus sit amet odio sodales placer. Sed varius leo ac...</h6>
-                                    </a>
-                                    <div class="post-meta d-flex align-items-center">
-                                        <a href="#" class="post-like"><img src="{% static 'img/core-img/like.png' %}" alt=""> <span>392</span></a>
-                                        <a href="#" class="post-comment"><img src="{% static 'img/core-img/chat.png' %}" alt=""> <span>10</span></a>
+                                    <div class="post-data">
+                                        <a href="#" class="post-catagory"></a>
+                                        <a href="#" class="post-title">
+                                            <h6>{{news.title}}</h6>
+                                        </a>
+                                        <div class="post-meta d-flex align-items-center">
+                                            <a href="#" class="post-like"><img src="{% static 'img/core-img/like.png' %}" alt=""> <span>392</span></a>
+                                            <a href="#" class="post-comment"><img src="{% static 'img/core-img/chat.png' %}" alt=""> <span>10</span></a>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Single Post -->
-                        <div class="col-12 col-md-6">
-                            <div class="single-blog-post style-3">
-                                <div class="post-thumb">
-                                    <a href="#"><img src="{% static 'img/bg-img/14.jpg' %}" alt=""></a>
-                                </div>
-                                <div class="post-data">
-                                    <a href="#" class="post-catagory">Finance</a>
-                                    <a href="#" class="post-title">
-                                        <h6>Dolor sit amet, consectetur adipiscing elit. Nam eu metus sit amet odio sodales placer. Sed varius leo ac...</h6>
-                                    </a>
-                                    <div class="post-meta d-flex align-items-center">
-                                        <a href="#" class="post-like"><img src="{% static 'img/core-img/like.png' %}" alt=""> <span>392</span></a>
-                                        <a href="#" class="post-comment"><img src="{% static 'img/core-img/chat.png' %}" alt=""> <span>10</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Single Post -->
-                        <div class="col-12 col-md-6">
-                            <div class="single-blog-post style-3">
-                                <div class="post-thumb">
-                                    <a href="#"><img src="{% static 'img/bg-img/15.jpg' %}" alt=""></a>
-                                </div>
-                                <div class="post-data">
-                                    <a href="#" class="post-catagory">Finance</a>
-                                    <a href="#" class="post-title">
-                                        <h6>Dolor sit amet, consectetur adipiscing elit. Nam eu metus sit amet odio sodales placer. Sed varius leo ac...</h6>
-                                    </a>
-                                    <div class="post-meta d-flex align-items-center">
-                                        <a href="#" class="post-like"><img src="{% static 'img/core-img/like.png' %}" alt=""> <span>392</span></a>
-                                        <a href="#" class="post-comment"><img src="{% static 'img/core-img/chat.png' %}" alt=""> <span>10</span></a>
-                                    </div>
-                                </div>
+                               {% endfor %}
+                               {% for news in political_news %}
+              {% if forloop.counter == 1 %}
+              <a href="{% url 'category_news' category='Politics' %}">See all</a>
+              
+              {% endif %}
+              {% endfor %}
+                                  
                             </div>
                         </div>
                     </div>
                 </div>
 
+
+                   
                 <div class="col-12 col-lg-4">
                     <div class="section-heading">
                         <h6>Info</h6>
                     </div>
                     <!-- Popular News Widget -->
                     <div class="popular-news-widget mb-30">
-                        <h3>4 Most Popular News</h3>
+                        <h3>4 Important Health Tips</h3>
 
                         <!-- Single Popular Blog -->
                         <div class="single-popular-post">
-                            <a href="#">
-                                <h6><span>1.</span> Amet, consectetur adipiscing elit. Nam eu metus sit amet odio sodales.</h6>
-                            </a>
-                            <p>April 14, 2018</p>
+                            {% for news in health_news %}
+                            <h6><span>1.</span> {{news.story}}</h6>
+                            
+                            <p>{{news.created_at}}</p>
+                            {% endfor %}
+                            
+                               
                         </div>
-
-                        <!-- Single Popular Blog -->
-                        <div class="single-popular-post">
-                            <a href="#">
-                                <h6><span>2.</span> Consectetur adipiscing elit. Nam eu metus sit amet odio sodales placer.</h6>
-                            </a>
-                            <p>April 14, 2018</p>
-                        </div>
-
-                        <!-- Single Popular Blog -->
-                        <div class="single-popular-post">
-                            <a href="#">
-                                <h6><span>3.</span> Adipiscing elit. Nam eu metus sit amet odio sodales placer. Sed varius leo.</h6>
-                            </a>
-                            <p>April 14, 2018</p>
-                        </div>
-
-                        <!-- Single Popular Blog -->
-                        <div class="single-popular-post">
-                            <a href="#">
-                                <h6><span>4.</span> Eu metus sit amet odio sodales placer. Sed varius leo ac...</h6>
-                            </a>
-                            <p>April 14, 2018</p>
-                        </div>
+                
+                       
                     </div>
 
-                    <!-- Newsletter Widget -->
+                    <!-- Suggestion Widget -->
                     <div class="newsletter-widget">
-                        <h4>Newsletter</h4>
-                        <p>Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-                        <form action="#" method="post">
+                        <h4>Suggestion</h4>
+                        <p>Please feel free to suggest us.</p>
+                        <form action="" method="post">
                             <input type="text" name="text" placeholder="Name">
                             <input type="email" name="email" placeholder="Email">
-                            <button type="submit" class="btn w-100">Subscribe</button>
+                            <button type="submit" class="btn w-100">Submit</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- ##### Popular News Area End ##### -->
+    <!-- ##### Politics News Area End ##### -->
 
     <!-- ##### Video Post Area Start ##### -->
     <div class="video-post-area bg-img bg-overlay" style="background-image: url(img/bg-img/bg1.jpg);">
@@ -392,206 +327,5 @@
     </div>
     <!-- ##### Video Post Area End ##### -->
 
-    <!-- ##### Editorial Post Area Start ##### -->
-    <div class="editors-pick-post-area section-padding-80-50">
-        <div class="container">
-            <div class="row">
-                <!-- Editors Pick -->
-                <div class="col-12 col-md-7 col-lg-9">
-                    <div class="section-heading">
-                        <h6>Editor’s Pick</h6>
-                    </div>
-
-                    <div class="row">
-
-                        <!-- Single Post -->
-                        <div class="col-12 col-lg-4">
-                            <div class="single-blog-post">
-                                <div class="post-thumb">
-                                    <a href="#"><img src="{% static 'img/bg-img/1.jpg' %}" alt=""></a>
-                                </div>
-                                <div class="post-data">
-                                    <a href="#" class="post-title">
-                                        <h6>Orci varius natoque penatibus et magnis dis parturient montes.</h6>
-                                    </a>
-                                    <div class="post-meta">
-                                        <div class="post-date"><a href="#">February 11, 2018</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Single Post -->
-                        <div class="col-12 col-lg-4">
-                            <div class="single-blog-post">
-                                <div class="post-thumb">
-                                    <a href="#"><img src="{% static 'img/bg-img/2.jpg' %}" alt=""></a>
-                                </div>
-                                <div class="post-data">
-                                    <a href="#" class="post-title">
-                                        <h6>Orci varius natoque penatibus et magnis dis parturient montes.</h6>
-                                    </a>
-                                    <div class="post-meta">
-                                        <div class="post-date"><a href="#">February 11, 2018</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Single Post -->
-                        <div class="col-12 col-lg-4">
-                            <div class="single-blog-post">
-                                <div class="post-thumb">
-                                    <a href="#"><img src="{% static 'img/bg-img/3.jpg' %}" alt=""></a>
-                                </div>
-                                <div class="post-data">
-                                    <a href="#" class="post-title">
-                                        <h6>Orci varius natoque penatibus et magnis dis parturient montes.</h6>
-                                    </a>
-                                    <div class="post-meta">
-                                        <div class="post-date"><a href="#">February 11, 2018</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Single Post -->
-                        <div class="col-12 col-lg-4">
-                            <div class="single-blog-post">
-                                <div class="post-thumb">
-                                    <a href="#"><img src="{% static 'img/bg-img/4.jpg' %}" alt=""></a>
-                                </div>
-                                <div class="post-data">
-                                    <a href="#" class="post-title">
-                                        <h6>Orci varius natoque penatibus et magnis dis parturient montes.</h6>
-                                    </a>
-                                    <div class="post-meta">
-                                        <div class="post-date"><a href="#">February 11, 2018</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Single Post -->
-                        <div class="col-12 col-lg-4">
-                            <div class="single-blog-post">
-                                <div class="post-thumb">
-                                    <a href="#"><img src="{% static 'img/bg-img/5.jpg' %}" alt=""></a>
-                                </div>
-                                <div class="post-data">
-                                    <a href="#" class="post-title">
-                                        <h6>Orci varius natoque penatibus et magnis dis parturient montes.</h6>
-                                    </a>
-                                    <div class="post-meta">
-                                        <div class="post-date"><a href="#">February 11, 2018</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Single Post -->
-                        <div class="col-12 col-lg-4">
-                            <div class="single-blog-post">
-                                <div class="post-thumb">
-                                    <a href="#"><img src="{% static 'img/bg-img/6.jpg' %}" alt=""></a>
-                                </div>
-                                <div class="post-data">
-                                    <a href="#" class="post-title">
-                                        <h6>Orci varius natoque penatibus et magnis dis parturient montes.</h6>
-                                    </a>
-                                    <div class="post-meta">
-                                        <div class="post-date"><a href="#">February 11, 2018</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- World News -->
-                <div class="col-12 col-md-5 col-lg-3">
-                    <div class="section-heading">
-                        <h6>World News</h6>
-                    </div>
-
-                    <!-- Single Post -->
-                    <div class="single-blog-post style-2">
-                        <div class="post-thumb">
-                            <a href="#"><img src="{% static 'img/bg-img/7.jpg' %}" alt=""></a>
-                        </div>
-                        <div class="post-data">
-                            <a href="#" class="post-title">
-                                <h6>Orci varius natoque penatibus et magnis</h6>
-                            </a>
-                            <div class="post-meta">
-                                <div class="post-date"><a href="#">February 11, 2018</a></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Single Post -->
-                    <div class="single-blog-post style-2">
-                        <div class="post-thumb">
-                            <a href="#"><img src="{% static 'img/bg-img/8.jpg' %}" alt=""></a>
-                        </div>
-                        <div class="post-data">
-                            <a href="#" class="post-title">
-                                <h6>Orci varius natoque penatibus et magnis</h6>
-                            </a>
-                            <div class="post-meta">
-                                <div class="post-date"><a href="#">February 11, 2018</a></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Single Post -->
-                    <div class="single-blog-post style-2">
-                        <div class="post-thumb">
-                            <a href="#"><img src="{% static 'img/bg-img/9.jpg' %}" alt=""></a>
-                        </div>
-                        <div class="post-data">
-                            <a href="#" class="post-title">
-                                <h6>Orci varius natoque penatibus et magnis</h6>
-                            </a>
-                            <div class="post-meta">
-                                <div class="post-date"><a href="#">February 11, 2018</a></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Single Post -->
-                    <div class="single-blog-post style-2">
-                        <div class="post-thumb">
-                            <a href="#"><img src="{% static 'img/bg-img/10.jpg' %}" alt=""></a>
-                        </div>
-                        <div class="post-data">
-                            <a href="#" class="post-title">
-                                <h6>Orci varius natoque penatibus et magnis</h6>
-                            </a>
-                            <div class="post-meta">
-                                <div class="post-date"><a href="#">February 11, 2018</a></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Single Post -->
-                    <div class="single-blog-post style-2">
-                        <div class="post-thumb">
-                            <a href="#"><img src="{% static 'img/bg-img/11.jpg' %}" alt=""></a>
-                        </div>
-                        <div class="post-data">
-                            <a href="#" class="post-title">
-                                <h6>Orci varius natoque penatibus et magnis</h6>
-                            </a>
-                            <div class="post-meta">
-                                <div class="post-date"><a href="#">February 11, 2018</a></div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ##### Editorial Post Area End ##### -->
+   
 </content>

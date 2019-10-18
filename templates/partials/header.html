@@ -67,17 +67,17 @@
                         <!-- Nav Start -->
                         <div class="classynav">
                             <ul>
-                                <li class="active"><a href="index.html">Home</a></li>
+                                <li class="active"><a href="{% url 'home' %}">Home</a></li>
                                
                                        
                                        
-                                <li><a href="#">Politics</a></li>
+                                <li><a href="{% url 'category_news' category='Politics' %}">Politics</a></li>
         
-                                <li><a href="#">Business</a></li>
-                                <li><a href="#">Technology</a></li>
-                                <li><a href="#">Health</a></li>
-                                <li><a href="#">International</a></li>
-                                <li><a href="#">Sports</a></li>
+                                <li><a href="{% url 'category_news' category='Finance' %}">Finance</a></li>
+                                <li><a href="{% url 'category_news' category='Technology' %}">Technology</a></li>
+                                <li><a href="{% url 'category_news' category='Health' %}">Health</a></li>
+                                <li><a href="{% url 'category_news' category='International' %}">International</a></li>
+                                <li><a href="{% url 'category_news' category='Sports' %}">Sports</a></li>
                                 <li><a href="contact.html">Contact</a></li>
                             </ul>
                         </div>

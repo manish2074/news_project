@@ -21,15 +21,15 @@ class NewsTemplateView(TemplateView):
         news=News.objects.all()
         
     
-        context["latest_news"] = news.order_by("-created_at") [:5]
-        context["breaking_news"] = news.filter(category="0" or "1" or "4").order_by("-created_at") [:5]
-        context["political_news"] = news.filter(category="0").order_by("-created_at") [:5]
-        context["sports_news"] = news.filter(category="1").order_by("-created_at") [:5]
-        context["health_news"] = news.filter(category="2").order_by("-created_at") [:5]
-        context["business_news"] = news.filter(category="3").order_by("-created_at") [:5]
-        context["international_news"] = news.filter(category="4").order_by("-created_at") [:5]
-        context["finance_news"] = news.filter(category="5").order_by("-created_at") [:5]
-        context["popular_news"] = news.order_by("-count")[:5]
+        context["latest_news"] = news.order_by("-created_at") [:4]
+        context["breaking_news"] = news.filter(category="0" or "1" or "4").order_by("-created_at") [:4]
+        context["political_news"] = news.filter(category="0").order_by("-created_at") [:4]
+        context["sports_news"] = news.filter(category="1").order_by("-created_at") [:4]
+        context["health_news"] = news.filter(category="2").order_by("-created_at") [:4]
+        context["business_news"] = news.filter(category="3").order_by("-created_at") [:4]
+        context["international_news"] = news.filter(category="4").order_by("-created_at") [:4]
+        context["finance_news"] = news.filter(category="5").order_by("-created_at") [:4]
+        context["popular_news"] = news.order_by("-count")[:4]
         
         return context
 

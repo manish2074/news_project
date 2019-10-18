@@ -9,12 +9,32 @@
 {% block content %}
 <div class="content-section">
 <div class="media">
-<img class="rounded-circle" src="{{user.profile.profile_image.url}}" heigth="100px" width="90px">
+<img class="rounded-circle" src="{{ user.profile.profile_image.url }}" height="100px" width="30px">
 
 <div class="media-body">
 <h2 class="account-heading">{{user.username}}</h2>
 <p class ="text-secondary">{{user.email}}</p>
 </div>
+</div>
+<link rel="stylesheet" href="{% static 'css/content.css' %}">
+
+<div class="col-sm-6 offset-sm-4 text-center">
+<div class="row">
+    <div class="col-md-6">
+
+        <form method="post" enctype="multipart/form-data">
+
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}">
+
+            {{ u_form|crispy }}
+            {{ p_form|crispy }}
+            
+
+            <button type="submit" class="btn btn-primary">Update Profile</button>
+        </form>
+        </div>
+        </div>
 </div>
 </div>
 
