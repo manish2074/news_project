@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.template.defaultfilters import slugify
 
 
 # Create your models here.
@@ -10,7 +11,7 @@ class News(models.Model):
     story= models.TextField()
     count= models.IntegerField(default=0)
     category= models.CharField(choices=CATEGORY, max_length=2)
-    slug=models.SlugField(max_length=270)
+    slug=models.SlugField(max_length=270, unique=True)
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
     cover_image=models.ImageField(upload_to="uploads")
@@ -24,14 +25,8 @@ class News(models.Model):
     def __str__(self):
         return self.title
 
-    def form_valid(self,form):
-        
-        news = form.save(commit=False)
-        title= form.cleaned_data['title']
-        news.slug = slugify(title)
-        news.save()
-        return super(News,self).form_valid(form)
-
+    def slug(self):
+        return slugify(self.title)
 
     class Meta:
         

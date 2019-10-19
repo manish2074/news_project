@@ -1,5 +1,6 @@
 {% extends "partials/base.html" %}
 {% load crispy_forms_tags %}
+{% load static %}
 
 {% block header %}
  {% include "partials/header.html" %}
@@ -22,10 +23,10 @@
 <div class="row">
     <div class="col-md-6">
 
-        <form method="post" enctype="multipart/form-data">
+        <form method="POST" enctype="multipart/form-data">
 
             {% csrf_token %}
-            <input type="hidden" name="next" value="{{ next }}">
+          
 
             {{ u_form|crispy }}
             {{ p_form|crispy }}

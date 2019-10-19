@@ -1,5 +1,5 @@
 {% load static %}
-<slider>
+<section>
     <!-- ##### Hero Area Start ##### -->
 <div class="hero-area">
   <div class="container">
@@ -12,9 +12,11 @@
                   </div>
                   <div id="breakingNewsTicker" class="ticker">
                       <ul>
-                          <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
-                          <li><a href="#">Welcome to Colorlib Family.</a></li>
-                          <li><a href="#">Nam eu metus sitsit amet, consec!</a></li>
+                      {% for news in breaking_news %}
+                        <li><a href="{{ news.get_absolute_url }}">{{news.title}}</a></li>
+                      {% endfor %}
+                        
+                          
                       </ul>
                   </div>
               </div>
@@ -26,9 +28,10 @@
                   </div>
                   <div id="internationalTicker" class="ticker">
                       <ul>
-                          <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</a></li>
-                          <li><a href="#">Welcome to Colorlib Family.</a></li>
-                          <li><a href="#">Nam eu metus sitsit amet, consec!</a></li>
+                      {% for news in international_news %}
+                      <li><a href="{{news.get_absolute_url}}">{{news.title}}</a></li>
+                      {% endfor %}
+                          
                       </ul>
                   </div>
               </div>
@@ -44,5 +47,4 @@
   </div>
 </div>
 <!-- ##### Hero Area End ##### -->
-
-</slider>
+</section>
