@@ -39,11 +39,12 @@ class Comment(models.Model):
     create_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
 
-class Story(models.Model):
-    story_image= models.ImageField(upload_to="uploads")
-    content = models.CharField(max_length=200)
-    date_at=models.DateField(auto_now_add=True)
-    time_at= models.TimeField(auto_now_add=True)
+class Video(models.Model):
+    video_image = models.ImageField(upload_to="uploads")
+    title = models.CharField(max_length=270)
+    video_url = models.URLField(max_length=270)
+    upload_at = models.DateTimeField(auto_now_add=True)
+     
 
 
    

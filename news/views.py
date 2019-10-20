@@ -1,7 +1,7 @@
 from django.shortcuts import render,get_object_or_404
 from django.views.generic import ListView,TemplateView , DetailView 
 
-from news.models import News,Comment,Story
+from news.models import News,Comment, Video
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.utils.text import slugify
@@ -16,10 +16,11 @@ class NewsTemplateView(TemplateView):
     template_name="index.html"
    
     
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+    def get_context_data(self,*args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
         news=News.objects.all()
-        
+        video=Video.objects.all()
+        context["video_news"] = video.order_by("-created_at")
     
         context["latest_news"] = news.order_by("-created_at") [:4]
         context["breaking_news"] = news.filter(category="0").order_by("-created_at") [:4]
@@ -32,11 +33,7 @@ class NewsTemplateView(TemplateView):
         context["popular_news"] = news.order_by("-count")[:6]
         
         return context
-
-        
-
-
-
+    
     
 
 class NewsCategoryView(ListView):
