@@ -27,8 +27,12 @@
     <input type="checkbox" onclick="myFunction()">Show Password 
   <div> 
     <span style ="padding-left:195px;"> <button type="submit" class="btn btn-primary mb-2">Confirm identity</button></span>
-</div>
-
+  <small class="text-muted ml-2">
+    <a href="{% url 'password_reset' %}"> Forget Password?</a>
+    
+  </small>
+  </div>
+</form>  
 
 <br>
 <span style ="padding-left:213px;">
@@ -36,10 +40,7 @@
  <button type="submit" name="button" class="btn btn-danger mb-2"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_google.png">&nbsp; LOGIN WITH GOOGLE</button>
  </a>
 </span>
-</form>  
-</div>
-</div>
-</div>      
+      
 <script>
   function myFunction() {
     

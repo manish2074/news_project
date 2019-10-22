@@ -4,6 +4,8 @@ from accounts.forms import SignUpForm,UserUpdateForm,ProfileUpdateForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login,logout,authenticate
 from django.contrib import messages
+from django.core.mail import send_mail
+from django.conf import settings
 from .models import Profile
 from .forms import ProfileUpdateForm, SignUpForm , UserUpdateForm 
 from django.contrib.auth.decorators import login_required
@@ -14,11 +16,14 @@ def signup(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
+            send_mail
+            messages.success(request, f'Hi! {user.username} your account has been created successfully')
+
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            messages.success(request, f'Hi! {user.username} your account has been created successfully')
+           
             Profile.objects.create(user=user)
             return redirect('home')
     else:

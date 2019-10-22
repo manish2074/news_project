@@ -19,8 +19,8 @@ class NewsTemplateView(TemplateView):
     def get_context_data(self,*args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
         news=News.objects.all()
-        video=Video.objects.all()
-        context["video_news"] = video.order_by("-created_at")
+    
+
     
         context["latest_news"] = news.order_by("-created_at") [:4]
         context["breaking_news"] = news.filter(category="0").order_by("-created_at") [:4]
