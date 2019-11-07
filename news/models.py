@@ -32,6 +32,8 @@ class News(models.Model):
         
         verbose_name = 'News'
         verbose_name_plural = 'News'
+
+
 class Comment(models.Model):
     news= models.ForeignKey(News,on_delete=models.CASCADE,related_name="news_comment") 
     comment_by=models.ForeignKey(User,on_delete=models.SET_NULL,null=True)

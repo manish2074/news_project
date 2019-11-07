@@ -17,8 +17,7 @@ def signup(request):
         if form.is_valid():
             form.save()
             send_mail
-            messages.success(request, f'Hi! {user.username} your account has been created successfully')
-
+           
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)

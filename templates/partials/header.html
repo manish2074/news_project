@@ -28,9 +28,12 @@
                             </div>
                             <!-- Search Form -->
                             <div class="search-form">
-                                <form action="#" method="post">
-                                    <input type="search" name="search" class="form-control" placeholder="Search">
+                                <form method="GET" >                                        
+                                    <input type="search" name="search" value="{{request.GET.search}}" class="form-control" placeholder="Search">
+                                
+                                    
                                     <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                  
                                 </form>
                             </div>
                         </div>
@@ -79,7 +82,7 @@
                                 <li><a href="{% url 'category_news' category='Health' %}">Health</a></li>
                                 <li><a href="{% url 'category_news' category='International' %}">International</a></li>
                                 <li><a href="{% url 'category_news' category='Sports' %}">Sports</a></li>
-                                <li><a href="contact.html">Contact</a></li>
+                                <li><a href="{% url 'contact' %}">Contact</a></li>
                             </ul>
                         </div>
                         <!-- Nav End -->

@@ -1,11 +1,11 @@
 from django.shortcuts import render,get_object_or_404
 from django.views.generic import ListView,TemplateView , DetailView 
-
+from django.db.models import Q
 from news.models import News,Comment, Video
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.utils.text import slugify
-
+from django.core.paginator import Paginator
 # Create your views here.
 
 
@@ -16,14 +16,13 @@ class NewsTemplateView(TemplateView):
     template_name="index.html"
    
     
-    def get_context_data(self,*args, **kwargs):
-        context = super().get_context_data(*args, **kwargs)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
         news=News.objects.all()
-    
-
-    
+        
+        
         context["latest_news"] = news.order_by("-created_at") [:4]
-        context["breaking_news"] = news.filter(category="0").order_by("-created_at") [:4]
+        context["breaking_news"] = news.filter(Q(category="0")|Q(category="1")).order_by("-created_at") [:3]
         context["political_news"] = news.filter(category="0").order_by("-created_at") [:4]
         context["sports_news"] = news.filter(category="1").order_by("-created_at") [:4]
         context["health_news"] = news.filter(category="2").order_by("-created_at") [:4]
@@ -31,16 +30,16 @@ class NewsTemplateView(TemplateView):
         context["international_news"] = news.filter(category="4").order_by("-created_at") [:4]
         context["finance_news"] = news.filter(category="5").order_by("-created_at") [:4]
         context["popular_news"] = news.order_by("-count")[:6]
-        
+       
         return context
     
-    
-
+   
 class NewsCategoryView(ListView):
     model = News
     ordering =['-created_at']
     context_object_name ='category_list'
     template_name="news/category_news.html"
+    paginate_by=2
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -71,9 +70,6 @@ class NewsDetailView(DetailView):
         self.object.save()
         return context
 
-  
-    
-
 
 @login_required
 def create_comment(request,**kwargs):
@@ -86,9 +82,17 @@ def create_comment(request,**kwargs):
     comment.save()
     return render(request,"news/comment.html",{"comment":comment})
 
+def news_search(request):
+    searches = News.objects.all()
+    search_term = ''
+    if 'search' in request.GET:
+        search_term = request.GET['search']
+        searches = searches.filter(title__icontains=search_term)  
+    context={'search_term':search_term}
+    return render(request,search.html,context)
 
-
-
-
+def contact_us(request):
+    template_name="contact.html"
+    return render(request,template_name)
     
    

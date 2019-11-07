@@ -1,7 +1,15 @@
-<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">{{ comment.comment_by }}</h5>
-      <small class="text-muted">{{ comment.create_at }}</small>
-    </div>
-    <p class="mb-1">{{ comment.feedback }}</p>
-  </a>
+ <li class="single_comment_area">
+                                    <!-- Comment Content -->
+                                    <div class="comment-content d-flex">
+                                        <!-- Comment Author -->
+                                        <div class="comment-author">
+                                            <img src="{{ user.profile.profile_image.url }}" alt="author">
+                                        </div>
+                                        <!-- Comment Meta -->
+                                        <div class="comment-meta">
+                                            <a href="#" class="post-author">{{comment.comment_by}}</a>
+                                            <a href="#" class="post-date">{{comment.create_at}}</a>
+                                            <p>{{comment.feedback}}</p>
+                                        </div>
+                                    </div>
+                                </li>
