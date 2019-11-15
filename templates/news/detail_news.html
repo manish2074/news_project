@@ -41,8 +41,11 @@
                                         <!-- Post Like & Post Comment -->
                                         <div class="d-flex align-items-center post-like--comments">
                                          
-                                            <a href="#" class="post-like"><img src="{% static 'img/core-img/like.png' %}" alt=""> <span>392</span></a>
-                                            <a href="#" class="post-comment"><img src="{% static 'img/core-img/chat.png' %}" alt=""> <span>{{news.news_comment.count}}</span></a>
+                                          <a href="{{ likes.get_like_url }}" class="post-like"><img src="{% static 'img/core-img/like.png' %}" alt=""> <span>{{news.likes.count}}</span></a>
+                                           
+                                  
+                                           <a href="#" class="post-comment"><img src="{% static 'img/core-img/chat.png' %}" alt=""> <span>{{news.news_comment.count}}</span></a>
+                                            
                                         </div>
                                     </div>
                                 </div>

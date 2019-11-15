@@ -28,8 +28,8 @@
                             </div>
                             <!-- Search Form -->
                             <div class="search-form">
-                                <form method="GET" >                                        
-                                    <input type="search" name="search" value="{{request.GET.search}}" class="form-control" placeholder="Search">
+                                <form method="GET" action="{% url 'search_results' %}" >                                        
+                                    <input type="search" name="q" class="form-control" placeholder="Search">
                                 
                                     
                                     <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>

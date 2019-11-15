@@ -11,6 +11,7 @@ pillow = "==6.1.0"
 django-allauth = "*"
 django-crispy-forms = "*"
 social-auth-app-django = "*"
+django-taggit = "*"
 
 [requires]
 python_version = "3.7"

@@ -42,8 +42,8 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'crispy_forms',
     'django.contrib.sites',
-
     'allauth',
+    'taggit',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
@@ -52,15 +52,15 @@ INSTALLED_APPS = [
 
 ]
 
-AUTHENTICATION_BACKENDS = (
+#AUTHENTICATION_BACKENDS = (
    
     # Needed to login by username in Django admin, regardless of `allauth`
-    'django.contrib.auth.backends.ModelBackend',
+    #'django.contrib.auth.backends.ModelBackend',
 
     # `allauth` specific authentication methods, such as login by e-mail
-    'allauth.account.auth_backends.AuthenticationBackend',
+   # 'allauth.account.auth_backends.AuthenticationBackend',
    
-)
+#)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

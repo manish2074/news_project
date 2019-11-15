@@ -38,11 +38,15 @@
           </div>
 
           <!-- Hero Add -->
+         {% for ads in small_ads %}
+         
+        
           <div class="col-12 col-lg-4">
               <div class="hero-add">
-                  <a href="#"><img src="{% static 'img/bg-img/hero-add.gif' %}" alt=""></a>
+                  <a href="{{ads.ad_small_url}}"><img src="{{ads.ad_small_image}}" alt=""></a>
               </div>
           </div>
+           {% endfor %}
       </div>
   </div>
 </div>

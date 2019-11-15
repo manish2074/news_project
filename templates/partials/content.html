@@ -218,17 +218,21 @@
         <div class="container">
             <div class="row justify-content-center">
                 <!-- Single Video Post -->
-            
-                <div class="col-12 col-sm-6 col-md-4">
-                    <div class="single-video-post">
-                       <!-- <img src="" alt=""> -->
-                        <!-- Video Button -->
-                        <div class="videobtn">
-                            <a href="#" class="videoPlayer"><i class="fa fa-play" aria-hidden="true"></i></a>
-                        </div>
+            {% for news in video_news %}
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="single-video-post">
+                   {% if news.video_image %}
+                   <img src="{{ news.video_image.url }}" alt="">
+                   {% endif %}
+                  
+                    <!-- Video Button -->
+                    <div class="videobtn">
+                        <a href="{{news.video_url}}" class="videoPlayer"><i class="fa fa-play" aria-hidden="true"></i></a>
                     </div>
                 </div>
-            
+            </div>
+            {% endfor %}
+                
                
 
             </div>
