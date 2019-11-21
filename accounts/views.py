@@ -77,7 +77,8 @@ def contact(request):
     if request.method == 'POST':
         message = request.POST['message']
         subject = request.POST['subject']
-        asmita = request.POST.get('aarati',False)
+        asmita = request.POST.get('email',False)
+        #user = Profile.objects.get('user')
         send_mail(subject,message,asmita,[settings.EMAIL_HOST_USER],fail_silently=False)
     return render(request, 'contact.html')
         

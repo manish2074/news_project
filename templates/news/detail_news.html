@@ -15,6 +15,11 @@
                     <br><br><br>
 
                         <!-- Single Featured Post -->
+                         {% if request.user.is_authenticated and request.user == news.author %}
+              <a href="{{ news.get_absolute_url }}update/"> <button class="btn btn-blue">Update</button> </a>
+              {% include "partials/delete_modal.html" %}
+              {% endif %}
+              
                         <div class="single-blog-post featured-post single-post">
                             <div class="post-thumb">
                                <img src="{{ news.cover_image.url }}" alt="">

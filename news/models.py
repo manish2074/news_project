@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.conf import settings
 from django.utils.text import slugify
-#from taggit.managers import TaggableManager
+from taggit.managers import TaggableManager
 
 
 # Create your models here.
@@ -23,17 +23,14 @@ class News(models.Model):
     author= models.CharField(max_length=100,null=True)
     video_image = models.ImageField(blank=True,null=True)
     video_title = models.CharField(max_length=250,blank=True,null=True)
-    #tags = TaggableManager()
+    tags = TaggableManager()
     def get_absolute_url(self):
     
         return reverse("detail_news",kwargs={"category":self.get_category_display(), "pk":self.pk, "slug":self.slug})
     
   
 
-    def save(self,*args,**kwargs):
-        if not self.slug and self.title:
-            self.slug = slugify(self.title)
-        super(News, self).save(*args,**kwargs)    
+       
 
     def __str__(self):
         return self.title

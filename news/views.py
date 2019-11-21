@@ -1,13 +1,39 @@
 from django.shortcuts import render,get_object_or_404
-from django.views.generic import ListView,TemplateView , DetailView ,RedirectView
+from django.views.generic import ListView,TemplateView , DetailView ,RedirectView,CreateView,DeleteView,UpdateView
 from django.db.models import Q
 from news.models import News,Comment,NewsAd
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.utils.text import slugify
+from taggit.managers import TaggableManager
+from taggit.models import Tag
+from news import forms
+from django.http import HttpResponse
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 from django.core.paginator import Paginator
 # Create your views here.
+
+class CreateNewsView(LoginRequiredMixin,CreateView):
+    login_url='/accounts/login'
+    form_class=forms.NewsCreateForm
+    template_name='create_news'
+    success_url=reverse_lazy('home')
+
+    def form_valid(self,form):
+        
+        news = form.save(commit=False)
+        title= form.cleaned_data['title']
+        news.reporter = self.request.user
+        news.slug = slugify(title)
+        news.save()
+        return super(CreateNewsView,self).form_valid(form)
+
+
+    def form_invalid(self,form):
+        print (form.errors)
+        return super(CreateNewsView,self).form_invalid(form)  
 
 
 
@@ -64,6 +90,7 @@ class NewsCategoryView(ListView):
     def get_queryset(self):
         category = self.kwargs.get("category")
         category_key = [item[0] for item in News.CATEGORY if item[1] == category][0]
+
         return News.objects.filter(category=category_key)
 
 
@@ -110,10 +137,10 @@ class PostLikeToogle(RedirectView):
         url_ = obj.get_absolute_url()
         user = self.request.user
         if user.is_authenticated:
-            if user in obj.like.all():
-                obj.like.remove(user)
+            if user in obj.likes.all():
+                obj.likes.remove(user)
             else:
-                obj.like.add(user)
+                obj.likes.add(user)
         return url_
 
 @login_required
@@ -148,9 +175,22 @@ class SearchResultsView(ListView):
     def get_queryset(self):
         query = self.request.GET.get('q')
         object_list = News.objects.filter(Q(title__icontains=query))
-        return object_list
+        if query in object_list:
+            return object_list
+        else:
+            return HttpResponse('there is no match for your search.') 
 
 
+class NewsUpdateView(LoginRequiredMixin,UpdateView):
+    model = News
+    template_name="news/update_news.html"
+    fields = ("title","story")
+    success_url=reverse_lazy("home")
+
+class NewsDeleteView(LoginRequiredMixin,DeleteView):
+    model = News
+    
+    success_url=reverse_lazy("home")
 
 
     
