@@ -43,10 +43,11 @@ def signup(request):
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
-            
+            print (request.POST.get('email'))
+            user = User.objects.get(email=request.POST.get('email'))
             login(request, user,backend='django.core.mail.backends.console.EmailBackend' )
            
-            Profile.objects.create(user=user)
+            #Profile.objects.create(user=user)
             return HttpResponse('Please confirm your email address to complete the registration')
     else:
         form = SignUpForm()

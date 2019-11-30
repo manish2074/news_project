@@ -1,0 +1,45 @@
+{% extends "partials/base.html" %}
+{% load static %}
+
+{% block header %}
+ {% include "partials/header.html" %}
+ {% endblock header %}
+   
+  
+   
+{% block content %}
+    <h1>Page tagged with {{tag_name}} </h1>
+    {% for news in news %}
+    <div class="post-thumb">
+        <a href="{{ news.get_absolute_url }}"><img src="{{ news.cover_image.url }}" alt=""></a>
+    </div>
+    <div class="post-data">
+        <a href="#" class="post-catagory"></a>
+        <a href="#" class="post-title">
+            <h6>{{news.title}}</h6>
+        </a>
+        <div class="post-meta d-flex align-items-center">
+            <a href="#" class="post-like"><img src="{% static 'img/core-img/like.png' %}" alt=""> <span>392</span></a>
+            <a href="#" class="post-comment"><img src="{% static 'img/core-img/chat.png' %}" alt=""> <span>10</span></a>
+        </div>
+    </div>
+
+  
+      
+    {% endfor %}
+
+ {% endblock content %}
+   
+  {% block footerad %}
+  {% include "partials/footerad.html" %}
+ {% endblock footerad %}
+ 
+   {% block footer %}
+   {% include "partials/footer.html" %}
+ {% endblock footer %}
+   
+   {% block script %}
+   {% include "partials/script.html" %}
+ {% endblock script %}
+
+

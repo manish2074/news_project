@@ -26,7 +26,7 @@
                                                     <p class="post-excerp">{{news.story}} </p>
                                                     <!-- Post Like & Post Comment -->
                                                     <div class="d-flex align-items-center">
-                                                        <a href="#" class="post-like"><img src="{% static 'img/core-img/like.png' %}" alt=""> <span>392</span></a>
+                                                        
                                                         <a href="# " class="post-comment"><img src="{% static 'img/core-img/chat.png' %}" alt=""> <span>{{news.news_comment.count}}</span></a>
                                                     </div>
                                                 </div>
@@ -60,7 +60,7 @@
                                         </a>
                                         <!-- Post Like & Post Comment -->
                                         <div class="d-flex align-items-center">
-                                            <a href="#" class="post-like"><img src="{% static 'img/core-img/like.png' %}" alt=""> <span>392</span></a>
+                                           
                                             <a href="#" class="post-comment"><img src="{% static 'img/core-img/chat.png' %}" alt=""> <span>10</span></a>
                                         </div>
                                     </div>
@@ -88,7 +88,7 @@
                                           </a>
                                         <!-- Post Like & Post Comment -->
                                         <div class="d-flex align-items-center">
-                                            <a href="#" class="post-like"><img src="{% static 'img/core-img/like.png' %}" alt=""> <span>392</span></a>
+                                            
                                             <a href="#" class="post-comment"><img src="{% static 'img/core-img/chat.png' %}" alt=""> <span>10</span></a>
                                         </div>
                                     </div>
@@ -155,7 +155,7 @@
                                             <h6>{{news.title}}</h6>
                                         </a>
                                         <div class="post-meta d-flex align-items-center">
-                                            <a href="#" class="post-like"><img src="{% static 'img/core-img/like.png' %}" alt=""> <span>392</span></a>
+                                          
                                             <a href="#" class="post-comment"><img src="{% static 'img/core-img/chat.png' %}" alt=""> <span>10</span></a>
                                         </div>
                                     </div>
@@ -216,6 +216,7 @@
                    {% if news.video_image %}
                    <img src="{{ news.video_image.url }}" alt="">
                    {% endif %}
+                   
                   
                     <!-- Video Button -->
                     <div class="videobtn">
