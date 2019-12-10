@@ -44,10 +44,10 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             print (request.POST.get('email'))
-            user = User.objects.get(email=request.POST.get('email'))
-            login(request, user,backend='django.core.mail.backends.console.EmailBackend' )
+            #user = User.objects.get(email=request.POST.get('email'))
+            #login(request, user,backend='django.core.mail.backends.console.EmailBackend' )
            
-            #Profile.objects.create(user=user)
+           
             return HttpResponse('Please confirm your email address to complete the registration')
     else:
         form = SignUpForm()
@@ -78,7 +78,7 @@ def contact(request):
     if request.method == 'POST':
         message = request.POST['message']
         subject = request.POST['subject']
-        asmita = request.POST.get('email',False)
+        asmita = request.POST.get('email',)
         #user = Profile.objects.get('user')
         send_mail(subject,message,asmita,[settings.EMAIL_HOST_USER],fail_silently=False)
     return render(request, 'contact.html')

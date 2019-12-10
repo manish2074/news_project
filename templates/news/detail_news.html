@@ -39,7 +39,7 @@
                                             
                                              <ul class="d-flex">
                                              {% for tag in tags  %}
-                                              <li><a href="{% url 'news_tag' %}">{{tag.name}}</a></li>
+                                              <li><a href="{{ tag.get_detail_url }}">{{tag.name}}</a></li>
                                                
                                              {% endfor %}
                                                

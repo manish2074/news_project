@@ -10,6 +10,9 @@ from django.utils.text import slugify
 class Tag(models.Model):
     name = models.CharField(max_length=30)
 
+    def get_detail_url(self):
+        return reverse("news_tag",kwargs={"tag_name":self.name})
+
     def __str__(self):
         return self.name
 
@@ -34,6 +37,7 @@ class News(models.Model):
         return reverse("detail_news",kwargs={"category":self.get_category_display(), "pk":self.pk, "slug":self.slug})
     
   
+    
 
        
 

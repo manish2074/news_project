@@ -32,7 +32,7 @@ urlpatterns = [
     path('password-reset-complete/',auth_views.PasswordResetCompleteView.as_view(template_name='accounts/password_reset_complete.html'), name="password_reset_complete"),
     path('password-reset-confirm/<uidb64>/<token>/',auth_views.PasswordResetConfirmView.as_view(template_name='accounts/password_reset_confirm.html'), name="password_reset_confirm"),
     path('contact/',contact_us,name='contact'),
-     path('search/', SearchResultsView.as_view(), name='search_results'),
+    path('search/', SearchResultsView.as_view(), name='search_results'),
     path('contact/mail/',contact,name='contact_mail')
 ]
 if settings.DEBUG:

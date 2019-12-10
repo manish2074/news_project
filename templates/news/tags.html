@@ -9,7 +9,7 @@
    
 {% block content %}
     <h1>Page tagged with {{tag_name}} </h1>
-    {% for news in news %}
+    {% for news in tag_news %}
     <div class="post-thumb">
         <a href="{{ news.get_absolute_url }}"><img src="{{ news.cover_image.url }}" alt=""></a>
     </div>

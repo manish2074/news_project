@@ -187,7 +187,7 @@
                             {% for news in health_news %}
                             <h6><span>1.</span> {{news.story}}</h6>
                             
-                            <p>{{news.created_at}}</p>
+                            <p>{{news.created_at.date}}</p>
                             {% endfor %}
                             
                                

@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-
+from dotenv import load_dotenv,find_dotenv
+load_dotenv()
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -51,15 +52,15 @@ INSTALLED_APPS = [
 
 ]
 
-#AUTHENTICATION_BACKENDS = (
+AUTHENTICATION_BACKENDS = (
    
     # Needed to login by username in Django admin, regardless of `allauth`
-    #'django.contrib.auth.backends.ModelBackend',
+    'django.contrib.auth.backends.ModelBackend',
 
     # `allauth` specific authentication methods, such as login by e-mail
-   # 'allauth.account.auth_backends.AuthenticationBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
    
-#)
+)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -91,6 +92,7 @@ TEMPLATES = [
         },
     },
 ]
+SITE_ID = 1
 
 WSGI_APPLICATION = 'project.wsgi.application'
 
@@ -150,16 +152,17 @@ STATICFILES_DIRS = [
     '/var/www/static/',
 ]
 LOGIN_REDIRECT_URL = '/'
-LOGIN_URL = 'login'
+LOGIN_URL = '/accounts/login'
 LOGOUT_URL = 'logout'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-SOCIAL_AUTH_GOOGLE_KEY = '540197031017-a4i31hp2imorglj0arfb36a8bdgis7dj.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_SECRET = 'JhaIXnPOI3i9lkhVYRUBKz78'
-SITE_ID = 1
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_USE_TLS = True
+# SOCIAL_AUTH_GOOGLE_KEY = '540197031017-a4i31hp2imorglj0arfb36a8bdgis7dj.apps.googleusercontent.com'
+# SOCIAL_AUTH_GOOGLE_SECRET = 'JhaIXnPOI3i9lkhVYRUBKz78'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = os.environ.get('USER_EMAIL')
-EMAIL_HOST_PASSWORD = os.environ.get('USER_PASSWORD')
 EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.getenv('EMAIL_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASS')

@@ -12,6 +12,7 @@ django-allauth = "*"
 django-crispy-forms = "*"
 social-auth-app-django = "*"
 django-taggit = "*"
+python-dotenv = "*"
 
 [requires]
 python_version = "3.7"

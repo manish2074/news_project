@@ -3,6 +3,17 @@ from django.contrib.auth.forms import UserCreationForm,UserChangeForm
 from django.contrib.auth.models import User
 from .models import Profile
 
+
+class EmailValidation(forms.EmailField):
+    def validate(self, value):
+        try:
+            User.objects.get(email=value)
+            raise forms.ValidationError("email already exists")
+        except User.MultipleObjectsReturned:
+            raise forms.ValidationError("email already exists")
+        except User.DoesNotExist:
+            pass
+        
 class SignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
     last_name = forms.CharField(max_length=30, required=False, help_text='Optional.')

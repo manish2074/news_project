@@ -198,10 +198,10 @@ class SearchResultsView(ListView):
     def get_queryset(self):
         query = self.request.GET.get('q')
         object_list = News.objects.filter(Q(title__icontains=query))
-        if query in object_list:
-            return object_list
-        else:
-            return HttpResponse('there is no match for your search.') 
+        
+        return object_list
+        
+        #return HttpResponse('there is no match for your search.') 
 
 
 class NewsUpdateView(LoginRequiredMixin,UpdateView):
@@ -218,5 +218,5 @@ class NewsDeleteView(LoginRequiredMixin,DeleteView):
 def view_tag(request,tag_name):
     tag= Tag.objects.get(name=tag_name)
       
-    news= tag.our_tag.all()
-    return render(request,'news/tags.html',{"tag_name":tag_name,'news':news})  
+    tag_news= tag.our_tag.all()
+    return render(request,'news/tags.html',{"tag_name":tag_name,'tag_news':tag_news})  
